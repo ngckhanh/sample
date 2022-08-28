@@ -1,5 +1,5 @@
 <?php
-include 'code.php';
+require_once('code.php');
 ?>
 
 <!DOCTYPE html>
@@ -9,8 +9,6 @@ include 'code.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add product</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link type="text/css" rel="stylesheet" href="add_product.css">
 </head>
 <body>
@@ -34,23 +32,26 @@ include 'code.php';
             <h1>Add Product</h1>
         </div>
         <div class="container-body">
-            <form method="post" action="code.php" enctype="multi/form-data">
+            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data">
                 <table class="first_table">
                     <tr>
-                        <td><label for="">Name</label></td>
+                        <td><label for="product_name">Name</label></td>
                         <td><input type="text" name="product_name" placeholder="Enter Product Name" class="form-control"></td>
+                        <td><span><?php echo $nameErr ?></span> </td>
                     </tr>
                     <tr>
-                        <td><label for="">Price</label></td>
-                        <td><input type="text" name="price" placeholder="Enter Selling Price" class="form-control"></td>
+                        <td><label for="price">Price</label></td>
+                        <td><input type="number" name="price" placeholder="Enter Selling Price" class="form-control"></td>
+                        <span><?php echo $priceErr ?></span>
                     </tr>
                     <tr>
-                        <td><label for="">Upload Image</label></td>
+                        <td><label for="file">Upload Image</label></td>
                         <td><input type="file" name="image" class="form-control"></td>
                     </tr>
                     <tr>
-                        <td><label for="">Description</label></td>
+                        <td><label for="description">Description</label></td>
                         <td><textarea rows="3" cols="50" name="description" placeholder="Enter Description" class="form-control"></textarea></td>
+                        <span><?php echo $descriptionErr ?></span>
                     </tr>
                 </table>
 
